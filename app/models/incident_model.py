@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.sql import func
 from typing import Optional
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
@@ -17,7 +17,10 @@ class Incident(Base):
         ForeignKey("detections.id"),
     )
 
-    status: Mapped[IncidentStatus] = mapped_column(default=IncidentStatus.OPEN)
+    status: Mapped[IncidentStatus] = mapped_column(
+        SAEnum(IncidentStatus),
+        default=IncidentStatus.OPEN
+    )
 
     priority: Mapped[str] = mapped_column(default="MEDIUM")
 
