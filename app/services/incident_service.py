@@ -5,7 +5,7 @@ from app.models.enums import IncidentStatus
 from app.core.exceptions import BusinessException
 
 
-VADLID_TRANSITIONS = {
+VALID_TRANSITIONS = {
     IncidentStatus.OPEN: IncidentStatus.INVESTIGATING,
     IncidentStatus.INVESTIGATING: IncidentStatus.RESOLVED,
 }
@@ -22,7 +22,7 @@ def update_incident_status(db: Session, incident_id: int, new_status: IncidentSt
     if current_status == IncidentStatus.RESOLVED:
         raise BusinessException("Incident already resolved")
 
-    if VADLID_TRANSITIONS.get(current_status) != new_status:
+    if VALID_TRANSITIONS.get(current_status) != new_status:
         raise BusinessException(
             f"Invalid transition from {current_status} to {new_status}"
         )
