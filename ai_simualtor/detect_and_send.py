@@ -1,7 +1,7 @@
 import requests
 from ultralytics import YOLO
 
-API_URL = "http://127.0.0.1:8000/detection/"
+API_URL = "http://api:8000/detection/"
 
 model = YOLO("yolov8n.pt")
 
