@@ -5,7 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.models import detection_model, incident_model
+import app.models.detection_model
+import app.models.incident_model
 from app.core.database import Base
 from app.core.config import settings
 
